@@ -7,4 +7,5 @@ public interface IComestible {
     public void setCalorias(int calorias);
     public Calendar getFechaVencimiento();
     public void setFechaVencimiento(Calendar fechaVencimiento);
+
 }

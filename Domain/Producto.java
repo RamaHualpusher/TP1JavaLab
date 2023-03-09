@@ -1,16 +1,19 @@
 package Domain;
 
 public abstract class Producto implements IDescuento{
-    private String id;
-    private String descripcion;
-    private int cantidadStock;
-    private double precioUnitario;
-    private double porcentajeGanancia;
-    private double porcentajeDescuento;
-    private double precioFinal;
+    protected String id;
+    protected String descripcion;
+    protected int cantidadStock;
+    protected double precioUnitario;
+    protected double porcentajeGanancia;
+    protected double porcentajeDescuento;
+    protected double precioFinal;
+
+    protected boolean disponible;
 
     //CONSTRUCTOR
     public Producto() {
+        this.disponible = true;
     }
 
 
@@ -19,9 +22,7 @@ public abstract class Producto implements IDescuento{
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    public abstract void setId(String id);
 
     public String getDescripcion() {
         return descripcion;
@@ -55,6 +56,11 @@ public abstract class Producto implements IDescuento{
         this.porcentajeGanancia = porcentajeGanancia;
     }
 
+    public boolean isDisponible() {
+        return disponible = cantidadStock > 0;
+    }
+
+
     @Override
     public double getPorcentajeDescuento() {
         return porcentajeDescuento;
@@ -76,6 +82,8 @@ public abstract class Producto implements IDescuento{
     }
 
     //METODOS
-    public abstract boolean verificarID(String id);
+    public boolean verificarID(String id, String patron){
+        return id.toUpperCase().matches(patron);
+    }
 
 }

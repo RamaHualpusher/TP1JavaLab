@@ -7,6 +7,15 @@ public class Envasado extends Comestible{
     public Envasado() {
     }
 
+    @Override
+    public void setId(String id) {
+        if (verificarID(id, "[A][B][0-9][0-9][0-9]")) {
+            this.id = id;
+        } else {
+            System.out.println("El ID no cumple con el patron");
+        }
+    }
+
     public String getTipoEnvase() {
         return tipoEnvase;
     }
@@ -32,26 +41,6 @@ public class Envasado extends Comestible{
             precioFinal = this.getPrecioUnitario() * (1 + this.getPorcentajeGanancia() / 100) * (1 + this.getPorcentajeDescuento() / 100);
         }
         return precioFinal;
-    }
-
-    @Override
-    public boolean verificarID(String id) {
-        //El String debe ser convertido a mayusculas y compobar que siga el siguiente patron de caracteres AB123 donde se respete que las primeras letras sean AB
-
-        //Convertir a mayusculas
-        id = id.toUpperCase();
-
-        //Comprobar que el String tenga 5 caracteres
-        if (id.length() != 5) {
-            return false;
-        }
-
-        //Comprobar que los primeros 2 caracteres sean letras A y B y los siguientes 3 caracteres sean cualquier número usando expresiones regulares
-        if (id.matches("[A][B][0-9][0-9][0-9]")) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     @Override

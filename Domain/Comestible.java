@@ -3,8 +3,8 @@ package Domain;
 import java.util.Calendar;
 
 public abstract class Comestible extends Producto implements IComestible {
-    Calendar fechaVencimiento;
-    int calorias;
+    protected Calendar fechaVencimiento;
+    protected int calorias;
 
     public Comestible() {
     }
@@ -28,6 +28,5 @@ public abstract class Comestible extends Producto implements IComestible {
     public void setFechaVencimiento(Calendar fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
-
 
 }

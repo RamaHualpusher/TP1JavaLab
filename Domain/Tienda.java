@@ -1,5 +1,8 @@
 package Domain;
 
+import Controller.Saldo;
+import Controller.Stock;
+
 import java.util.Map;
 
 public class Tienda {
@@ -41,5 +44,16 @@ public class Tienda {
 
     public void setProductos(Map<String, Producto> productos) {
         this.productos = productos;
+    }
+
+    public void comprarProducto(Producto producto, int cantidad){
+        if(Saldo.verificarSaldo(this, cantidad) && Stock.verificarStock(this, producto, cantidad)){
+            Saldo.actualizarSaldo(this, cantidad);
+            Stock.actualizarStock(this, producto, cantidad);
+            this.getProductos().put(producto.getId(), producto);
+        }else {
+            System.out.println("No se puede realizar la compra");
+        }
+
     }
 }
